@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <label>Prodi</label>
+    <select id="prodi">
+        <option>Semua Prodi</option>
+        <option>Informatika</option>
+        <option>Teknik Geofisika</option>
+    </select>
+    
+    <br><br>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>NIM.</th>
+                <th>Nama.</th>
+                <th>Prodi.</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>120140191</td>
+                <td>Andri Setiawan</td>
+                <td>Informatika</td>
+            </tr>
+            <tr>
+                <td>120140192</td>
+                <td>Dani Saputra</td>
+                <td>Informatika</td>
+            </tr>
+            <tr>
+                <td>120140193</td>
+                <td>Rika Sofianti</td>
+                <td>Teknik Geofisika</td>
+            </tr>
+            <tr>
+                <td>120140194</td>
+                <td>Riko Darmawan</td>
+                <td>Informatika</td>
+            </tr>
+            <tr>
+                <td>120140195</td>
+                <td>Rina Rahma</td>
+                <td>Teknik Geofisika</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+
+</html>
+
+<script>
+    $('#prodi').on('change', function () {
+
+        var data = this.value;
+
+        var jo = $("tbody").find("tr");
+        if (this.value == "Semua Prodi") {
+            jo.show();
+            return;
+        }
+        //hide all the rows
+        jo.hide();
+
+        //Recusively filter the jquery object to get results.
+        jo.filter(function (i, v) {
+            var $t = $(this);
+
+            if ($t.is(":contains('" + data + "')")) {
+                return true;
+            }
+    
+            return false;
+        }).show();
+    });
+</script>
