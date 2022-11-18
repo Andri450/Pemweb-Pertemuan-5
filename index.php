@@ -1,3 +1,11 @@
+<?php
+$host       =   "localhost";
+$user       =   "root";
+$password   =   "";
+$database   =   "pemweb-pertemuan-5";
+
+$koneksi = mysqli_connect($host, $user, $password, $database);
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,7 +24,6 @@
         <option>Informatika</option>
         <option>Teknik Geofisika</option>
     </select>
-    
     <br><br>
 
     <table border="1">
@@ -28,12 +35,18 @@
             </tr>
         </thead>
         <tbody>
+            <?php
+                $mahasiswa = mysqli_query($koneksi, "SELECT * from mhs");
+                for($i = 0; $i < mysqli_num_rows($mahasiswa); $i++){
+                    $dats = mysqli_fetch_array($mahasiswa);
+            ?>
             <tr>
-                <td>120140191</td>
-                <td>Andri Setiawan</td>
-                <td>Informatika</td>
+                <td><?= $dats['nim'] ?></td>
+                <td><?= $dats['nama'] ?></td>
+                <td><?= $dats['prodi'] ?></td>
             </tr>
-            <tr>
+            <?php } ?>
+            <!-- <tr>
                 <td>120140192</td>
                 <td>Dani Saputra</td>
                 <td>Informatika</td>
@@ -77,7 +90,7 @@
                 <td>12014019</td>
                 <td>Mia</td>
                 <td>Teknik Geofisika</td>
-            </tr>
+            </tr> -->
         </tbody>
     </table>
 </body>
